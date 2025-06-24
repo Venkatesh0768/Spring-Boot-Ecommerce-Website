@@ -107,8 +107,8 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="https://telusko.com/">
-              Telusko
+            <a className="navbar-brand" href="/">
+              ecom
             </a>
             <button
               className="navbar-toggler"
@@ -171,54 +171,49 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
                   <i className="bi bi-sun-fill"></i>
                 )}
               </button>
-              <div className="d-flex align-items-center cart">
-                <a href="/cart" className="nav-link text-dark">
+              <form className="d-flex align-items-center cart" role="search">
+                <a href="/cart" className="nav-link text-dark me-3">
                   <i
-                    className="bi bi-cart me-2"
-                    style={{ display: "flex", alignItems: "center" }}
-                  >
-                    Cart
-                  </i>
+                    className="bi bi-cart-fill"
+                    style={{ fontSize: "1.5rem" }}
+                  ></i>
                 </a>
-                {/* <form className="d-flex" role="search" onSubmit={handleSearch} id="searchForm"> */}
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  value={input}
-                  onChange={(e) => handleChange(e.target.value)}
-                  onFocus={() => setSearchFocused(true)} // Set searchFocused to true when search bar is focused
-                  onBlur={() => setSearchFocused(false)} // Set searchFocused to false when search bar loses focus
-                />
-                {showSearchResults && (
-                  <ul className="list-group">
-                    {searchResults.length > 0 ? (  
+                <div className="search-form">
+                  <input
+                    className="form-control"
+                    type="search"
+                    placeholder="Search products..."
+                    aria-label="Search"
+                    value={input}
+                    onChange={(e) => handleChange(e.target.value)}
+                    onFocus={() => setSearchFocused(true)}
+                    onBlur={() => setSearchFocused(false)}
+                  />
+                  <i className="bi bi-search search-icon"></i>
+                  {showSearchResults && (
+                    <ul className="list-group">
+                      {searchResults.length > 0 ? (
                         searchResults.map((result) => (
                           <li key={result.id} className="list-group-item">
-                            <a href={`/product/${result.id}`} className="search-result-link">
-                            <span>{result.name}</span>
+                            <a
+                              href={`/product/${result.id}`}
+                              className="search-result-link"
+                            >
+                              <span>{result.name}</span>
                             </a>
                           </li>
                         ))
-                    ) : (
-                      noResults && (
-                        <p className="no-results-message">
-                          No Prouduct with such Name
-                        </p>
-                      )
-                    )}
-                  </ul>
-                )}
-                {/* <button
-                  className="btn btn-outline-success"
-                  onClick={handleSearch}
-                >
-                  Search Products
-                </button> */}
-                {/* </form> */}
-                <div />
-              </div>
+                      ) : (
+                        noResults && (
+                          <p className="no-results-message">
+                            No Prouduct with such Name
+                          </p>
+                        )
+                      )}
+                    </ul>
+                  )}
+                </div>
+              </form>
             </div>
           </div>
         </nav>
